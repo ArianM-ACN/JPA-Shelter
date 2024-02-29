@@ -44,10 +44,13 @@ public class ShelterServiceImpl implements ShelterService{
     @Override
     public void addAnimalsToShelter(List<AnimalRecordDTO> animalRecordDTOS, Long id) {
         ShelterEntity shelterEntity = shelterRepository.findById(id).orElse(null);
-        List<AnimalEntity> animals = animalRecordDTOS.stream().map(p -> dtoMap.mapTo(p)).toList();
-        List<AnimalEntity> animalsFromList = shelterEntity.getAnimalsInShelter();
-        animalsFromList.addAll(animals.stream().map(p->animalRepository.save(p)).toList());
-        shelterEntity.setAnimalsInShelter(animalsFromList);  //redundant? durch add vorher vielleicht schon gesettet?
+        animalRecordDTOS.stream()
+                .map(p -> dtoMap.mapTo(p))
+                .map(animalRepository::save)
+                .forEach(a->shelterEntity.getAnimalsInShelter().add(a));
+        //List<AnimalEntity> animalsFromList = shelterEntity.getAnimalsInShelter(); //get all animals from found shelter
+        //animalsFromList.addAll(animals.stream().map(p->animalRepository.save(p)).toList()); //add all animals to already existing animals
+        //shelterEntity.setAnimalsInShelter(animalsFromList);  //set all existing and new animals of our shelter //redundant
         shelterRepository.save(shelterEntity);
     }
 
