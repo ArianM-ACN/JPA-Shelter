@@ -22,4 +22,9 @@ public class ShelterController {
     public void create(@RequestBody ShelterRecordDTO shelterRecordDTO){
         shelterService.create(shelterRecordDTO);
     }
+
+    @GetMapping("api/shelter/v1")
+    public void showShelters(){
+
+    }
 }

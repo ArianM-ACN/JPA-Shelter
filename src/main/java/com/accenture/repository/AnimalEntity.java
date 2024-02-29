@@ -1,9 +1,6 @@
 package com.accenture.repository;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class AnimalEntity {
@@ -15,6 +12,9 @@ public class AnimalEntity {
     private String breed;
     private int age;
     private String gender;
+    @ManyToOne
+    @JoinColumn(name="shelter_id")
+    private ShelterEntity shelterEntity;
 
     //hibernate schaut nur felder an
     // POJO java bean - spring bean beliebige java klassen die unter verwaltung von spring

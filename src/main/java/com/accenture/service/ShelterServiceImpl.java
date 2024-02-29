@@ -23,4 +23,9 @@ public class ShelterServiceImpl implements ShelterService{
         ShelterEntity shelterEntity = shelterMapper.mapToEntity(shelterRecordDTO);
         shelterRepository.save(shelterEntity);
     }
+
+    @Override
+    public void showAllShelters() {
+
+    }
 }
