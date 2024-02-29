@@ -39,4 +39,9 @@ public class AdopterController {
     public void updateAdopter(@RequestParam Long id, @RequestBody AdopterRecordDTO adopter){
         adopterServiceImpl.updateAdopterById(id, adopter);
     }
+
+    @GetMapping(value = "api/adopter/v1", params="city")
+    public List<AdopterRecordDTO> getAdopterByCity(@RequestParam String city){
+        return adopterServiceImpl.getAdoptByCity(city);
+    }
 }

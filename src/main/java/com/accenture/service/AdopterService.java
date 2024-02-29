@@ -13,4 +13,6 @@ public interface AdopterService {
     void updateAdopterById(Long id, AdopterRecordDTO adopterRecordDTO);
 
     List<AdopterRecordDTO> getAllAdopters();
+
+    List<AdopterRecordDTO> getAdoptByCity(String stadt);
 }

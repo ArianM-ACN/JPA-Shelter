@@ -53,4 +53,10 @@ public class AdopterServiceImpl implements AdopterService{
 
         return list;
     }
+
+    @Override
+    public List<AdopterRecordDTO> getAdoptByCity(String stadt) {
+        List<AdopterEntity> filteredAdopters = adopterRepository.findByCity(stadt);
+        return filteredAdopters.stream().map(adopterMapper::mapToDto).toList();
+    }
 }

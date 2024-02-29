@@ -47,7 +47,7 @@ public class ShelterServiceImpl implements ShelterService{
         List<AnimalEntity> animals = animalRecordDTOS.stream().map(p -> dtoMap.mapTo(p)).toList();
         List<AnimalEntity> animalsFromList = shelterEntity.getAnimalsInShelter();
         animalsFromList.addAll(animals.stream().map(p->animalRepository.save(p)).toList());
-        shelterEntity.setAnimalsInShelter(animalsFromList);
+        shelterEntity.setAnimalsInShelter(animalsFromList);  //redundant? durch add vorher vielleicht schon gesettet?
         shelterRepository.save(shelterEntity);
     }
 
