@@ -1,12 +1,10 @@
 package com.accenture.controller;
 
+import com.accenture.repository.AnimalRecordDTO;
 import com.accenture.repository.ShelterRecordDTO;
 import com.accenture.service.ShelterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +27,10 @@ public class ShelterController {
     @GetMapping("api/shelter/v1")
     public List<ShelterRecordDTO> showShelters(){
         return shelterService.allShelters();
+    }
+
+    @PostMapping("api/shelter/v1/{id}")
+    public void addAnimalsToShelter(@RequestBody List<AnimalRecordDTO> animalRecordDTOS, @PathVariable("id") Long id){
+        shelterService.addAnimalsToShelter(animalRecordDTOS,id);
     }
 }
