@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class ShelterController {
 
@@ -23,8 +25,9 @@ public class ShelterController {
         shelterService.create(shelterRecordDTO);
     }
 
+    //returns list to output, send to user as response to get request, if void -> command works but no output
     @GetMapping("api/shelter/v1")
-    public void showShelters(){
-
+    public List<ShelterRecordDTO> showShelters(){
+        return shelterService.allShelters();
     }
 }

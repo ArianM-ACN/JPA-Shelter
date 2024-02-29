@@ -7,6 +7,8 @@ import com.accenture.repository.ShelterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ShelterServiceImpl implements ShelterService{
 
@@ -25,7 +27,11 @@ public class ShelterServiceImpl implements ShelterService{
     }
 
     @Override
-    public void showAllShelters() {
-
+    public List<ShelterRecordDTO> allShelters() {
+        List<ShelterEntity> all = shelterRepository.findAll();
+        List<ShelterRecordDTO> transfList = all.stream().map(shelterMapper::mapToDto).toList();
+        return transfList;
     }
+
+
 }
